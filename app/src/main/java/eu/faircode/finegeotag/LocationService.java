@@ -43,6 +43,10 @@ import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import android.telephony.TelephonyManager;
+
+
 public class LocationService extends IntentService {
     private static final String TAG = "FineGeotag.Service";
 
@@ -147,6 +151,39 @@ public class LocationService extends IntentService {
     public static void startLocating(String image_filename, Context context) {
         LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+
+
+
+        // ---- Cell Tower ----
+        // ---- Cell Tower ----
+        // ---- Cell Tower ----
+        TelephonyManager tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        
+        // Type of the network
+        int phoneTypeInt = tel.getPhoneType();
+        List<NeighboringCellInfo> neighCells = tel.getNeighboringCellInfo();
+
+        for (int i = 0; i < neighCells.size(); i++)
+        {
+          try
+          {
+            NeighboringCellInfo thisCell = neighCells.get(i);
+            Log.w(TAG, "CELL ID(a):" + i + ":" + thisCell.getCid() + ":" + thisCell.getLac());
+            Log.w(TAG, "CELL ID(b):" + i + ":" + thisCell);
+          }
+          catch (Exception e)
+          {
+          }
+        }
+
+        // ---- Cell Tower ----
+        // ---- Cell Tower ----
+        // ---- Cell Tower ----
+
+        
+
+
+
 
         // Request coarse location
         if (lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
