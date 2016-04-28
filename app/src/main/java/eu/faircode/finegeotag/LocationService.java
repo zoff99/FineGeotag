@@ -45,7 +45,8 @@ import java.util.List;
 
 
 import android.telephony.TelephonyManager;
-
+import android.telephony.CellLocation;
+import android.telephony.NeighboringCellInfo;
 
 public class LocationService extends IntentService {
     private static final String TAG = "FineGeotag.Service";
@@ -157,7 +158,7 @@ public class LocationService extends IntentService {
         // ---- Cell Tower ----
         // ---- Cell Tower ----
         // ---- Cell Tower ----
-        TelephonyManager tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager tel = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         
         // Type of the network
         int phoneTypeInt = tel.getPhoneType();
